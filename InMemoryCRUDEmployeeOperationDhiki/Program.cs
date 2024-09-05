@@ -1,5 +1,10 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using InMemoryCRUDEmployeeOperationDhiki.Data;
+using InMemoryCRUDEmployeeOperationDhiki.Models;
 using InMemoryCRUDEmployeeOperationDhiki.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +23,25 @@ builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
 // Add controllers
 builder.Services.AddControllers();
+
+// Register FluentValidation validators
+builder.Services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<EmployeeDtoValidator>());
+
+builder.Services.Configure<ApiBehaviorOptions>(o =>
+{
+    o.InvalidModelStateResponseFactory = actionContext =>
+    {
+        var errors = actionContext.ModelState
+            .Where(e => e.Value.Errors.Count > 0)
+            .ToDictionary(
+                kvp => kvp.Key,
+                kvp => kvp.Value.Errors.Select(e => e.ErrorMessage).ToArray()
+            );
+
+        return new BadRequestObjectResult(new { status = 400, errors });
+    };
+});
+    
 
 var app = builder.Build();
 

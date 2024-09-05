@@ -13,7 +13,11 @@ public class DateFormatConverter : JsonConverter<DateTime>
     public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         var dateString = reader.GetString();
-        return DateTime.ParseExact(dateString, DateFormat, CultureInfo.InvariantCulture);
+        if (DateTime.TryParseExact(dateString, DateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+        {
+            return date;
+        }
+        throw new JsonException("Invalid date format. Please use 'dd-MMM-yyyy'.");
     }
 
     public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
