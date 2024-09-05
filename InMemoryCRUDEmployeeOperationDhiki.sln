@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InMemoryCRUDEmployeeOperationDhiki", "InMemoryCRUDEmployeeOperationDhiki\InMemoryCRUDEmployeeOperationDhiki.csproj", "{A567A4D5-7498-46FD-8C00-B4972D228821}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A567A4D5-7498-46FD-8C00-B4972D228821}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A567A4D5-7498-46FD-8C00-B4972D228821}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A567A4D5-7498-46FD-8C00-B4972D228821}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A567A4D5-7498-46FD-8C00-B4972D228821}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
