@@ -20,7 +20,8 @@ public class EmployeeDtoValidator : AbstractValidator<EmployeeDto>
     {
         RuleFor(x => x.EmployeeId)
             .NotEmpty().WithMessage("EmployeeId is required.")
-            .Length(1, 10).WithMessage("EmployeeId must be between 1 and 10 characters.");
+            .Length(1, 10).WithMessage("EmployeeId must be between 1 and 10 characters.")
+            .Matches("^[0-9]+$").WithMessage("EmployeeId must contain only numeric characters.");
 
         RuleFor(x => x.FullName)
             .NotEmpty().WithMessage("FullName is required.")

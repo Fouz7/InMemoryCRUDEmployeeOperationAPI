@@ -95,7 +95,7 @@ public class EmployeeController : ControllerBase
 
         try
         {
-            // Check if employeeId already exists
+            // Cek jika employee dengan ID yang sama sudah ada
             var existingEmployee = await _employeeService.GetEmployeeByIdAsync(employeeDto.EmployeeId);
             if (existingEmployee != null)
             {
